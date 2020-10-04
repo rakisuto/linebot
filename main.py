@@ -15,10 +15,10 @@ from linebot.models import (
 )
 import os
 app = Flask(__name__)
-LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
-LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
-line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(LINE_CHANNEL_SECRET)
+YOUR_CHANNEL_ACCESS_TOKEN = os.getenv('YOUR_CHANNEL_ACCESS_TOKEN')
+YOUR_CHANNEL_SECRET = os.getenv('YOUR_CHANNEL_SECRET')
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 @app.route("/callback", methods=['POST'])
 
 def callback():
@@ -57,4 +57,4 @@ if __name__ == "__main__":
 
     port = int(os.getenv("PORT"))
 
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0"  , port=port)
