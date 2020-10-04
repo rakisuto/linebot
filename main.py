@@ -37,11 +37,11 @@ def callback():
 
         abort(400)
 
-    return ‘OK’
+    return "OK"
 
 @handler.add(MessageEvent, message=TextMessage)
 
-#オウム返し用のメッセージイベント
+# オウム返し用のメッセージイベント
 
 def handle_message(event):
 
@@ -53,8 +53,8 @@ def handle_message(event):
 
     )
 
-if __name__ == “__main__”:
+if __name__ == "__main__":
 
-    port = int(os.getenv(“PORT”))
+    port = int(os.getenv("PORT"))
 
-    app.run(host=”0.0.0.0″, port=port)
+    app.run(host="0.0.0.0", port=port)
