@@ -1,7 +1,6 @@
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
-
 )
 from linebot.exceptions import (
 
@@ -44,7 +43,7 @@ def callback():
 # オウム返し用のメッセージイベント
 
 def handle_message(event):
-    if event.reply_token == "00000000000000000000000000000000":
+    if event.reply_token == "00000000000000000000000000000000": # webhook検証対策
         return
     line_bot_api.reply_message(
 
@@ -58,4 +57,4 @@ if __name__ == "__main__":
 
     port = int(os.getenv("PORT"))
 
-    app.run(host="0.0.0.0"  , port=port)
+    app.run(host="0.0.0.0", port=port)
