@@ -27,7 +27,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 @app.route('/')
 # DB接続
 def get_connection():
-    return psycopg2.connect(postgresql-deep-90247, sslmode='require')
+    return psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # tableにクエリを投げる
 def get_response_message(mes_from):
