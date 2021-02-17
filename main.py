@@ -50,7 +50,7 @@ def handle_message(event):
         event.reply_token,
 
         TextSendMessage(text="hello")
-        TextSendMessage(text=event.message.text)
+        #TextSendMessage(text=event.message.text)
 
     )
 
