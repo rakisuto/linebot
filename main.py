@@ -75,16 +75,16 @@ def handle_message(event):
                         f'全国図鑑No.{r[0]}\n'\
                         f'タイプ1 {r[2]}\n'\
                         f'タイプ2 {r[3] if r[3] else "なし"}\n'\
-                        f'とくせい1 {r[4]}\n'\
-                        f'とくせい2 {r[5] if r[5] else "なし"}\n'\
-                        f'隠れとくせい {r[6] if r[6] else "なし"}\n'\
+                        f'特性1 {r[4]}\n'\
+                        f'特性2 {r[5] if r[5] else "なし"}\n'\
+                        f'隠れ特性 {r[6] if r[6] else "なし"}\n'\
                         f'HP {r[7]}\n'\
-                        f'こうげき {r[8]}\n'\
-                        f'ぼうぎょ {r[9]}\n'\
-                        f'とくこう {r[10]}\n'\
-                        f'とくぼう {r[11]}\n'\
-                        f'すばやさ {r[12]}\n'\
-                        f'種族値合計 {r[13]}\n'
+                        f'A  {r[8]}\n'\
+                        f'B  {r[9]}\n'\
+                        f'C  {r[10]}\n'\
+                        f'D  {r[11]}\n'\
+                        f'S {r[12]}\n'\
+                        f'T {r[13]}\n'
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=reply_message)
