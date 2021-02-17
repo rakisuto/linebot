@@ -22,10 +22,10 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 def callback():
 
+    #リクエストヘッダーから署名検証
     signature = request.headers['X-Line-Signature']
-
+    #リクエストボディを取得
     body = request.get_data(as_text=True)
-
     app.logger.info("Request body: " + body)
 
     try:
@@ -49,6 +49,7 @@ def handle_message(event):
 
         event.reply_token,
 
+        TextSendMessage(text="hello")
         TextSendMessage(text=event.message.text)
 
     )
