@@ -88,7 +88,7 @@ def handle_message(event):
             val_rows = get_response_message(*name_rows[i])
             r = val_rows[0]
             url_no = ('{0:04d}'.format(r[0]))
-            reply_message += f'{r[1]}\n\n'\
+            reply_message += f'<img src="https://img.icons8.com/ios/50/000000/pokeballs.png"/>{r[1]}\n\n'\
                              f'全国図鑑No.{r[0]}\n'\
                              f'タイプ1 {r[2]}\n'\
                              f'タイプ2 {r[3] if r[3] else "なし"}\n'\
