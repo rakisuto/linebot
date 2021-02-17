@@ -84,7 +84,9 @@ def handle_message(event):
                         f'C  {r[10]}\n'\
                         f'D  {r[11]}\n'\
                         f'S {r[12]}\n'\
-                        f'T {r[13]}\n'
+                        f'T {r[13]}\n'\
+                        f'https://swsh.pokedb.tokyo/pokemon/show/{[r[0]}-00?season=15&rule=0'
+
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=reply_message)
