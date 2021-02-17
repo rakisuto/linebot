@@ -83,7 +83,7 @@ def handle_message(event):
                         f'とくこう {r[10]}\n'\
                         f'とくぼう {r[11]}\n'\
                         f'すばやさ {r[12]}\n'\
-                        f'種族値合計 {r[13]}\n\n'\
+                        f'種族値合計 {r[13]}\n'
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=reply_message)
