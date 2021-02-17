@@ -69,7 +69,8 @@ def callback():
 
 # メッセージイベント
 def handle_message(event):
-
+    # グローバル変数の初期化
+    reply_message = ""
     # 入力された名前に完全一致・部分一致するname要素を取得する。
     name_rows = get_response_name(event.message.text)
     # webhook検証対策
