@@ -102,7 +102,8 @@ def handle_message(event):
                              f'D  {r[11]}\n'\
                              f'S  {r[12]}\n'\
                              f'T  {r[13]}\n'\
-            if i == len(name_rows):
+
+            if i == (len(name_rows)-1):
                 reply_message += f'https://swsh.pokedb.tokyo/pokemon/show/{url_no}-00?season=15&rule=0'\
 
         line_bot_api.reply_message(
