@@ -22,6 +22,7 @@ YOUR_CHANNEL_ACCESS_TOKEN = os.getenv('YOUR_CHANNEL_ACCESS_TOKEN')
 YOUR_CHANNEL_SECRET = os.getenv('YOUR_CHANNEL_SECRET')
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # connection確立時に読みこむ
 @app.route('/')
