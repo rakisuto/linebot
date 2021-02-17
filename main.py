@@ -34,11 +34,9 @@ def get_connection():
 def get_response_name(mes_from):
     with get_connection() as conn:
         with conn.cursor(cursor_factory=DictCursor) as cur:
-            cur.execute("SELECT name FROM poke_stat WHERE name = '{}' or name LIKE '{}%' or name LIKE 'メガ{}%'"\
-                        .format(mes_from))
+            cur.execute("SELECT name FROM poke_stat WHERE name = '{}' or name LIKE '{}%' or name LIKE 'メガ{}%'".format(mes_from))
             rows = cur.fetchall()
             return rows
-
 
 # 対象となるポケモンの行を返す。
 def get_response_message(mes_from):
