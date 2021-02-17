@@ -71,6 +71,7 @@ def handle_message(event):
     )
     else:
         r = rows[0]
+        url_no = ('{0:04d}'.format(r[0])
         reply_message = f'{r[1]}\n\n'\
                         f'全国図鑑No.{r[0]}\n'\
                         f'タイプ1 {r[2]}\n'\
@@ -85,7 +86,7 @@ def handle_message(event):
                         f'D  {r[11]}\n'\
                         f'S {r[12]}\n'\
                         f'T {r[13]}\n'\
-                        f' https://swsh.pokedb.tokyo/pokemon/show/{r[0]}-00?season=15&rule=0'
+                        f'https://swsh.pokedb.tokyo/pokemon/show/{url_no}-00?season=15&rule=0'
 
         line_bot_api.reply_message(
             event.reply_token,
