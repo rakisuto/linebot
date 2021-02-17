@@ -71,7 +71,7 @@ def handle_message(event):
     )
     else:
         r = rows[0]
-        url_no = ('{0:04d}'.format(r[0])
+        url_no = ('{0:04d}'.format(r[0]))
         reply_message = f'{r[1]}\n\n'\
                         f'全国図鑑No.{r[0]}\n'\
                         f'タイプ1 {r[2]}\n'\
