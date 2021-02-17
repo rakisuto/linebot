@@ -78,7 +78,7 @@ def handle_message(event):
                         f'特性1 {r[4]}\n'\
                         f'特性2 {r[5] if r[5] else "なし"}\n'\
                         f'隠れ特性 {r[6] if r[6] else "なし"}\n'\
-                        f'HP {r[7]}\n'\
+                        f'H {r[7]}\n'\
                         f'A  {r[8]}\n'\
                         f'B  {r[9]}\n'\
                         f'C  {r[10]}\n'\
