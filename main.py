@@ -22,7 +22,7 @@ YOUR_CHANNEL_ACCESS_TOKEN = os.getenv('YOUR_CHANNEL_ACCESS_TOKEN')
 YOUR_CHANNEL_SECRET = os.getenv('YOUR_CHANNEL_SECRET')
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
-DATABASE_URL = postgres://sftsryomhtmfcz:1d7d70f1be98844de24f8574e87210918afe65a023ad933fc02be411a7dd87e4@ec2-54-145-249-177.compute-1.amazonaws.com:5432/dfl4uqe0d0koko
+DATABASE_URL = postgres://sftsryomhtmfcz:sergtsop@ec2-54-145-249-177.compute-1.amazonaws.com:5432/dfl4uqe0d0koko
 
 # connection確率時に読みこむ
 @app.route('/')
