@@ -83,7 +83,7 @@ def handle_message(event):
     else:
     # 取得したname要素の行を取得し、返す。
         for i in range(len(name_rows)):
-            val_rows = get_response_message(name_rows[i])
+            val_rows = get_response_message(*name_rows[i])
             r = val_rows[0]
             url_no = ('{0:04d}'.format(r[0]))
             reply_message = f'{r[1]}\n\n'\
