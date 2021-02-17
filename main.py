@@ -34,7 +34,7 @@ def get_connection():
 def get_response_message(mes_from):
     with get_connection() as conn:
         with conn.cursor(cursor_factory=DictCursor) as cur:
-            cur.execute("SELECT * FROM poke_stat WHERE name='{}' or name='{}%'".format(mes_from, mes_from))
+            cur.execute("SELECT * FROM poke_stat WHERE name = '{}' or name LIKE '{}%'".format(mes_from, mes_from))
             rows = cur.fetchall()
             return rows
 
