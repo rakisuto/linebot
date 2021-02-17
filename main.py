@@ -86,26 +86,26 @@ def handle_message(event):
             val_rows = get_response_message(*name_rows[i])
             r = val_rows[0]
             url_no = ('{0:04d}'.format(r[0]))
-            reply_message = f'{r[1]}\n\n'\
-                            f'全国図鑑No.{r[0]}\n'\
-                            f'タイプ1 {r[2]}\n'\
-                            f'タイプ2 {r[3] if r[3] else "なし"}\n'\
-                            f'特性1 {r[4]}\n'\
-                            f'特性2 {r[5] if r[5] else "なし"}\n'\
-                            f'隠れ特性 {r[6] if r[6] else "なし"}\n'\
-                            f'H  {r[7]}\n'\
-                            f'A  {r[8]}\n'\
-                            f'B  {r[9]}\n'\
-                            f'C  {r[10]}\n'\
-                            f'D  {r[11]}\n'\
-                            f'S  {r[12]}\n'\
-                            f'T  {r[13]}\n'\
-                            f'https://swsh.pokedb.tokyo/pokemon/show/{url_no}-00?season=15&rule=0'
+            reply_message += f'{r[1]}\n\n'\
+                             f'全国図鑑No.{r[0]}\n'\
+                             f'タイプ1 {r[2]}\n'\
+                             f'タイプ2 {r[3] if r[3] else "なし"}\n'\
+                             f'特性1 {r[4]}\n'\
+                             f'特性2 {r[5] if r[5] else "なし"}\n'\
+                             f'隠れ特性 {r[6] if r[6] else "なし"}\n'\
+                             f'H  {r[7]}\n'\
+                             f'A  {r[8]}\n'\
+                             f'B  {r[9]}\n'\
+                             f'C  {r[10]}\n'\
+                             f'D  {r[11]}\n'\
+                             f'S  {r[12]}\n'\
+                             f'T  {r[13]}\n'\
+                             f'https://swsh.pokedb.tokyo/pokemon/show/{url_no}-00?season=15&rule=0'\
 
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=reply_message)
-            )
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply_message)
+        )
 
 if __name__ == "__main__":
 
