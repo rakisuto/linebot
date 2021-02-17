@@ -9,7 +9,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
 
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, CarouselTemplate, CarouselColumn
 
 )
 import os
@@ -30,13 +30,24 @@ DATABASE_URL = os.environ.get('DATABASE_URL')
 def get_connection():
     return psycopg2.connect(DATABASE_URL, sslmode='require')
 
-# tableにクエリを投げる
+# ポケモン名の問い合わせを行い、完全一致・部分一致する
+def get_response_name(mes_from):
+    with get_connection() as conn:
+        with conn.cursor(cursor_factory=DictCursor) as cur:
+            cur.execute("SELECT name FROM poke_stat WHERE name = '{}' or name LIKE '{}%' or name LIKE 'メガ{}%'"\
+                        .format(mes_from))
+            rows = cur.fetchall()
+            return rows
+
+
+# 対象となるポケモンの行を返す。
 def get_response_message(mes_from):
     with get_connection() as conn:
         with conn.cursor(cursor_factory=DictCursor) as cur:
-            cur.execute("SELECT * FROM poke_stat WHERE name = '{}' or name LIKE '{}%'".format(mes_from, mes_from))
+            cur.execute("SELECT * FROM poke_stat WHERE name = '{}'".format(mes_from))
             rows = cur.fetchall()
             return rows
+
 
 # リクエストの処理
 @app.route("/callback", methods=['POST'])
@@ -58,40 +69,44 @@ def callback():
 
 # メッセージイベント
 def handle_message(event):
-    rows = get_response_message(event.message.text)
 
+    # 入力された名前に完全一致・部分一致するname要素を取得する。
+    name_rows = get_response_name(event.message.text)
     # webhook検証対策
     if event.reply_token == "00000000000000000000000000000000":
         return
     # テキストチェック
-    if len(rows) == 0:
+    if len(name_rows) == 0:
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="そのようなポケモンは存在しません")
     )
     else:
-        r = rows[0]
-        url_no = ('{0:04d}'.format(r[0]))
-        reply_message = f'{r[1]}\n\n'\
-                        f'全国図鑑No.{r[0]}\n'\
-                        f'タイプ1 {r[2]}\n'\
-                        f'タイプ2 {r[3] if r[3] else "なし"}\n'\
-                        f'特性1 {r[4]}\n'\
-                        f'特性2 {r[5] if r[5] else "なし"}\n'\
-                        f'隠れ特性 {r[6] if r[6] else "なし"}\n'\
-                        f'H {r[7]}\n'\
-                        f'A  {r[8]}\n'\
-                        f'B  {r[9]}\n'\
-                        f'C  {r[10]}\n'\
-                        f'D  {r[11]}\n'\
-                        f'S {r[12]}\n'\
-                        f'T {r[13]}\n'\
-                        f'https://swsh.pokedb.tokyo/pokemon/show/{url_no}-00?season=15&rule=0'
+    # 取得したname要素の行を取得し、返す。
+        for i in range(len(name_rows)):
+            val_rows = get_response_message(name_rows[i])
+            r = val_rows[0]
+            url_no = ('{0:04d}'.format(r[0]))
+            reply_message = f'{r[1]}\n\n'\
+                            f'全国図鑑No.{r[0]}\n'\
+                            f'タイプ1 {r[2]}\n'\
+                            f'タイプ2 {r[3] if r[3] else "なし"}\n'\
+                            f'特性1 {r[4]}\n'\
+                            f'特性2 {r[5] if r[5] else "なし"}\n'\
+                            f'隠れ特性 {r[6] if r[6] else "なし"}\n'\
+                            f'H  {r[7]}\n'\
+                            f'A  {r[8]}\n'\
+                            f'B  {r[9]}\n'\
+                            f'C  {r[10]}\n'\
+                            f'D  {r[11]}\n'\
+                            f'S  {r[12]}\n'\
+                            f'T  {r[13]}\n'\
+                            f'https://swsh.pokedb.tokyo/pokemon/show/{url_no}-00?season=15&rule=0'
 
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=reply_message)
-        )
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=reply_message)
+            )
 
 if __name__ == "__main__":
 
